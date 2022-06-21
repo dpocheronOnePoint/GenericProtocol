@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    let interactor = MainInteractor()
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
+            .onAppear {
+                Task {
+                    try await interactor.loadModules()
+                }
+            }
     }
 }
 
